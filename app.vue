@@ -8,7 +8,7 @@
         }`"
       >
         <div class="pointer-events-auto">
-          <AccountLogin @noAccount="hasNoAccount" />
+          <AccountLogin @noAccount="hasNoAccount" @okay="closeAll" />
         </div>
       </div>
       <div

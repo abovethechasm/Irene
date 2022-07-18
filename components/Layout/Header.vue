@@ -5,6 +5,11 @@ import { useMainConfig } from "@/store/mainconfig.js";
 
 const mainConfig = useMainConfig();
 
+const nuxtApp = useNuxtApp()
+
+const router = useRouter()
+
+
 defineProps(["title"]);
 const toggleNav = ref(false);
 
@@ -202,7 +207,7 @@ function toggleOn() {
                     <span class="py-1">{{ name }}</span>
                   </a>
                 </div>
-                <span
+                <span v-if = "!mainConfig.user_email"
                   class="
                     text-white
                     transition
@@ -223,6 +228,24 @@ function toggleOn() {
                   " @click = "mainConfig.openLogin"
                   ><span class="py-1">Login</span></span
                 >
+                <span class = "text-white
+                    transition
+                    duration-500
+                    ease-in-out
+                    tracking-wide
+                    px-3
+                    flex flex-row
+                    space-x-4
+                    md:uppercase
+                    py-4
+                    text-xs
+                    md:text-md
+                    font-bold
+                    hover:text-maid
+                    block
+                    cursor-pointer" v-else @click="mainConfig.logout(); router.go()">
+                  <span class="py-1">{{mainConfig.user_email}} Logout?</span>
+                </span>
               </div>
             </div>
           </div>
